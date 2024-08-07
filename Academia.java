@@ -1,13 +1,19 @@
+import java.util.List;
+import java.util.ArrayList;
 public class Academia {
     private String nome;
     private String endereco;
     private String telefone;
 
+    List<Aluno> alunos;
+
     public Academia(String nome, String endereco, String telefone) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
+        alunos = new ArrayList <>();
     }
+    
 
     public String getNome() {
         return this.nome;
@@ -31,6 +37,10 @@ public class Academia {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
     }
 
 }
