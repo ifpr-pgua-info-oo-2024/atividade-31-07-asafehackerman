@@ -21,15 +21,16 @@ public class Main {
 
         // ALuno 1
         Date data1 = formato.parse("16/05/2007");
-        gym1.alunos.add(new Aluno("Jubileu", "Iniciante", data1, "Masculino", 1.76, 81.1));
+        
+        gym1.alunos.add(new Aluno("Jubileu", "Masculino", data1, 1.76, 81.1, "Iniciante", 1));
 
         // ALuno 2
         Date data2 = formato.parse("23/04/2005");
-        gym1.alunos.add(new Aluno("Carlos", "Intermediário", data2, "Masculino", 1.81, 101.3));
+        gym1.alunos.add(new Aluno("Carlos", "Masculino", data2, 1.81, 101.3, "Intermediário", 1));
 
         // ALuno 3
         Date data3 = formato.parse("17/03/1998");
-        gym1.alunos.add(new Aluno("Roberta", "Experiente", data3, "Feminino", 1.96, 151.7));
+        gym1.alunos.add(new Aluno("Roberta", "Feminino", data3, 1.96, 151.7, "Experiente", 1));
 
         // gym2
 
@@ -43,15 +44,15 @@ public class Main {
 
         // ALuno 4
         Date data4 = formato.parse("23/12/2008");
-        gym2.alunos.add(new Aluno("Carlinhos", "Iniciante", data4, "Masculino", 1.78, 61.0));
+        gym2.alunos.add(new Aluno("Carlinhos", "Masculino", data4, 1.78, 61.0, "Iniciante", 1));
 
         // ALuno 5
         Date data5 = formato.parse("31/08/1993");
-        gym2.alunos.add(new Aluno("Maria", "Intermediário", data5, "Feminino", 1.51, 101.3));
+        gym2.alunos.add(new Aluno("Maria", "Feminino", data5, 1.51, 101.3, "Intermediário", 1));
 
         // ALuno 6
         Date data6 = formato.parse("11/03/1978");
-        gym2.alunos.add(new Aluno("Velho doido", "Experiente", data6, "Masculino", 2.11, 154.5));
+        gym2.alunos.add(new Aluno("Velho doido", "Masculino", data6, 2.11, 154.5, "Experiente", 1));
 
 
 
@@ -79,18 +80,16 @@ public class Main {
         System.out.print(gym2.getTelefone());
         System.out.println();
 
+        System.out.println();
         System.out.println("Alunos da Academia 1:");
         for (Aluno aluno : gym1.getAlunos ()) {
             System.out.println (aluno.toString ());
-            System.out.println ();
         }
 
         System.out.println();
-
         System.out.println("Alunos da Academia 2:");
         for (Aluno aluno : gym2.getAlunos ()) {
             System.out.println (aluno.toString ());
-            System.out.println ();
         }
     }
  

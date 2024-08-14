@@ -1,25 +1,15 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Aluno {
-    private String nome;
-    private String graduacao;
-    private Date data_nascimento;
-    private String genero;
-    private double altura;
-    private double peso;
+public class Aluno extends Pessoa{
+    protected String graduacao;
+    protected int idade;
 
-    public Aluno (String nome, String graduacao, Date data_nascimento, String genero, double altura, double peso) {
-        this.nome = nome;
+    public Aluno (String nome, String genero, Date nascimento, double altura, double peso, String graduacao, int idade) {
+        super(nome, genero, nascimento, altura, peso);
+        
         this.graduacao = graduacao;
-        this.data_nascimento = data_nascimento;
-        this.genero = genero;
-        this.altura = altura;
-        this.peso = peso;
-    }
-
-    public Aluno(String nome, String graduacao, Date data_nascimento) {
-        this(nome, graduacao, data_nascimento, "", 0, 0);
+        this.idade = calcularIdade(nascimento);
     }
 
     // getters
@@ -32,8 +22,8 @@ public class Aluno {
         return graduacao;
     }
 
-    public Date getData_nascimento() {
-        return data_nascimento;
+    public Date getNascimento() {
+        return nascimento;
     }
 
     public String getGenero() {
@@ -58,8 +48,8 @@ public class Aluno {
         this.graduacao = graduacao;
     }
 
-    public void setData(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
     }
 
     public void setGenero(String genero) {
@@ -74,12 +64,12 @@ public class Aluno {
         this.peso = peso;
     }
 
-    @Override
+    
     public String toString () {
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
 
         return "Aluno [Nome = "+ nome +", Nivel = "+ graduacao +
-        ", Nascimento = "+ formato.format(data_nascimento) +", Gênero = "+ genero +
+        ", Nascimento = "+ formato.format(nascimento) +", Idade = "+ idade +", Gênero = "+ genero +
         ", Altura = "+ altura +", Peso = "+ peso +"]";
     }
 }
