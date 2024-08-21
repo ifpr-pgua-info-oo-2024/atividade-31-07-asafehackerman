@@ -38,6 +38,11 @@ public class Aluno extends Pessoa{
         return peso;
     }
 
+    public double getIdade() {
+        return idade;
+    }
+
+
     // setters
 
     public void setNome(String nome) {
@@ -64,6 +69,9 @@ public class Aluno extends Pessoa{
         this.peso = peso;
     }
 
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
     
     public String toString () {
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");

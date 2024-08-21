@@ -1,13 +1,75 @@
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+public static void clearScreen() {  
+    System.out.print("\033[H\033[2J");  
+    System.out.flush();  
+}
+
+public static void cadastrarAcademia(Academia gym, Scanner scan) throws InterruptedException {
+    int fim = 0;   
+    String nome, endereco, telefone;
+
+    do {
+        fim = 0;
+        clearScreen();
+        System.out.print("Insira um nome: ");
+        nome = scan.nextLine();
+        gym.setNome(nome);
+        System.out.println();
+
+        if (nome == null) {
+            System.out.println("Nome inválido. Tente novamente.");
+            java.lang.Thread.sleep(1000);
+        } else {
+            fim++;
+        }
+    } while (fim != 0);
+
+    do {
+        fim = 0;
+        clearScreen();
+        System.out.print("Insira um endereço: ");
+        endereco = scan.nextLine();
+        gym.setEndereco(endereco);
+        System.out.println();
+
+        if (nome == null) {
+            System.out.println("Endereço inválido. Tente novamente.");
+            java.lang.Thread.sleep(1000);
+        } else {
+            fim++;
+        }
+    } while (fim != 0);
+
+    do {
+        fim = 0;    
+        clearScreen();
+        System.out.print("Insira um telefone: ");
+        telefone = scan.nextLine();
+        gym.setTelefone(telefone);
+        System.out.println();
+
+        if (nome == null) {
+            System.out.println("Telefone inválido. Tente novamente.");
+            java.lang.Thread.sleep(1000);
+        } else {
+            fim++;
+        }
+    } while (fim != 0);
+}
+    public static void main(String[] args) throws ParseException, InterruptedException {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
-        Academia gym1 = new Academia("Ratos Bombados", "Roque Vernalha", "(41) 9 9283-2323");
-        Academia gym2 = new Academia("Super Fortões", "Centro Histórico", "(41) 9 2321-7548");
+        Scanner scan = new Scanner(System.in);
+        Academia gym1 = new Academia(null, null, null);
+        Academia gym2 = new Academia(null, null, null);
+        
+        cadastrarAcademia(gym1, scan);
 
         // gym1
 
@@ -91,6 +153,7 @@ public class Main {
         for (Aluno aluno : gym2.getAlunos ()) {
             System.out.println (aluno.toString ());
         }
+    scan.close();
     }
  
 }
