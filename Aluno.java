@@ -73,8 +73,10 @@ public class Aluno extends Pessoa{
         this.idade = idade;
     }
     
+    
+    @Override
     public String toString () {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
         return "Aluno [Nome = "+ nome +", Nivel = "+ graduacao +
         ", Nascimento = "+ formato.format(nascimento) +", Idade = "+ idade +", Gênero = "+ genero +

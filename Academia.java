@@ -43,4 +43,8 @@ public class Academia {
         return alunos;
     }
 
+    public String toString () {
+        return nome +" - "+ endereco +" - "+ telefone;
+    }
+
 }

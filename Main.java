@@ -10,149 +10,128 @@ public static void clearScreen() {
     System.out.flush();  
 }
 
-public static void cadastrarAcademia(Academia gym, Scanner scan) throws InterruptedException {
-    int fim = 0;   
-    String nome, endereco, telefone;
+ public static void main(String[] args) throws ParseException, InterruptedException {
 
-    do {
-        fim = 0;
-        clearScreen();
-        System.out.print("Insira um nome: ");
-        nome = scan.nextLine();
-        gym.setNome(nome);
-        System.out.println();
-
-        if (nome == null) {
-            System.out.println("Nome inválido. Tente novamente.");
-            java.lang.Thread.sleep(1000);
-        } else {
-            fim++;
-        }
-    } while (fim != 0);
-
-    do {
-        fim = 0;
-        clearScreen();
-        System.out.print("Insira um endereço: ");
-        endereco = scan.nextLine();
-        gym.setEndereco(endereco);
-        System.out.println();
-
-        if (nome == null) {
-            System.out.println("Endereço inválido. Tente novamente.");
-            java.lang.Thread.sleep(1000);
-        } else {
-            fim++;
-        }
-    } while (fim != 0);
-
-    do {
-        fim = 0;    
-        clearScreen();
-        System.out.print("Insira um telefone: ");
-        telefone = scan.nextLine();
-        gym.setTelefone(telefone);
-        System.out.println();
-
-        if (nome == null) {
-            System.out.println("Telefone inválido. Tente novamente.");
-            java.lang.Thread.sleep(1000);
-        } else {
-            fim++;
-        }
-    } while (fim != 0);
-}
-    public static void main(String[] args) throws ParseException, InterruptedException {
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+        int fim = 0, operacao;    
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Scanner scan = new Scanner(System.in);
-        Academia gym1 = new Academia(null, null, null);
-        Academia gym2 = new Academia(null, null, null);
-        
-        cadastrarAcademia(gym1, scan);
+        Academia gym1 = new Academia("Ratos Gymbrothers", "Shopping Mall","(41) 9 0237-4932");
+        Academia gym2 = new Academia("Carpas Trembolona","Porto Seguro", "(41) 9 2304-3948");
 
-        // gym1
+        do {
+            String nome, genero, nascimentoStr, graduacao;
+            int idade, academia = 0;;
+            double altura, peso;
+            Date nascimentoDate;
 
-        System.out.print("Academia 1: ");               // printa o objeto do tipo Academia gym1    
-        System.out.print(gym1.getNome()+" - ");
-        System.out.print(gym1.getEndereco()+" - ");
-        System.out.print(gym1.getTelefone());
-        System.out.println();
+            clearScreen();
+            System.out.print("SISTEMA DE ACADEMIA\n0)Sair\n1)Cadastrar Aluno\n2)Ver Alunos\n3)Deletar Alunos\n\n> ");
+            operacao = scan.nextInt();
+            scan.nextLine();
+            switch(operacao) {
+                case 0:
+                    clearScreen();
+                    fim++;
+                break;
 
-        // Cadastro de alunos pra gym1
+                case 1:
+                    academia = 0;
+                
+                    clearScreen();
+                    System.out.print("Insira o nome do aluno: ");
+                    nome = scan.nextLine();
+                    System.out.print("\nInsira o gênero do aluno: ");
+                    genero = scan.nextLine();
+                    System.out.print("\nInsira a data de nascimento do aluno: ");
+                    nascimentoStr = scan.nextLine();
+                    nascimentoDate = Aluno.nascimentoToDate(nascimentoStr);
+                    idade = Aluno.calcularIdade(nascimentoDate);
+                    System.out.println(formato.format(nascimentoDate));
+                    System.out.print("\nInsira a altura do aluno: ");
+                    altura = scan.nextDouble();
+                    System.out.print("\nInsira o peso do aluno: ");
+                    peso = scan.nextDouble();
+                    scan.nextLine(); // precaução pra pegar a quebra de linha e não bugar graduação/nível do aluno
+                    System.out.print("\nInsira o nível do aluno: ");
+                    graduacao = scan.nextLine();
 
-        // ALuno 1
-        Date data1 = formato.parse("16/05/2007");
-        
-        gym1.alunos.add(new Aluno("Jubileu", "Masculino", data1, 1.76, 81.1, "Iniciante", 1));
+                    clearScreen();
+                    System.out.print("Academia 1: ");             // printa o objeto do tipo Academia gym2
+                    System.out.print(gym1.getNome()+" - ");
+                    System.out.print(gym1.getEndereco()+" - ");
+                    System.out.print(gym1.getTelefone());
+                    System.out.println();
 
-        // ALuno 2
-        Date data2 = formato.parse("23/04/2005");
-        gym1.alunos.add(new Aluno("Carlos", "Masculino", data2, 1.81, 101.3, "Intermediário", 1));
+                    System.out.print("Academia 2: ");             // printa o objeto do tipo Academia gym2
+                    System.out.print(gym2.getNome()+" - ");
+                    System.out.print(gym2.getEndereco()+" - ");
+                    System.out.print(gym2.getTelefone());
+                    System.out.println();
+                    
+                    System.out.print("Insira a academia que deseja inserir o aluno: ");
+                    academia = scan.nextInt();
 
-        // ALuno 3
-        Date data3 = formato.parse("17/03/1998");
-        gym1.alunos.add(new Aluno("Roberta", "Feminino", data3, 1.96, 151.7, "Experiente", 1));
+                    if (academia == 1) {
+                        gym1.alunos.add(new Aluno(nome, genero, nascimentoDate, altura, peso, graduacao, idade));                
+                    } else if (academia == 2) {
+                        gym2.alunos.add(new Aluno(nome, genero, nascimentoDate, altura, peso, graduacao, idade));
+                    }
+                break;
 
-        // gym2
+                case 2:
+                    academia = 0;
 
-        System.out.print("Academia 2: ");             // printa o objeto do tipo Academia gym2
-        System.out.print(gym2.getNome()+" - ");
-        System.out.print(gym2.getEndereco()+" - ");
-        System.out.print(gym2.getTelefone());
-        System.out.println();
+                    clearScreen();
+                    System.out.println("1) "+gym1.toString()+"");
+                    for (Aluno aluno : gym1.getAlunos ()) {
+                        System.out.println (aluno.toString ());
+                    }
 
-        // Cadastro de alunos pra gym2
+                    System.out.println("2) "+gym2.toString()+"");
+                    for (Aluno aluno : gym2.getAlunos ()) {
+                        System.out.println (aluno.toString ());
+                    } scan.nextLine();
+                break;
 
-        // ALuno 4
-        Date data4 = formato.parse("23/12/2008");
-        gym2.alunos.add(new Aluno("Carlinhos", "Masculino", data4, 1.78, 61.0, "Iniciante", 1));
+                case 3:
+                    int id;
 
-        // ALuno 5
-        Date data5 = formato.parse("31/08/1993");
-        gym2.alunos.add(new Aluno("Maria", "Feminino", data5, 1.51, 101.3, "Intermediário", 1));
+                    clearScreen();
+                    System.out.println("\n1) "+gym1.toString());
+                    System.out.println("2) "+gym2.toString());
+                    System.out.print("\nInsira o ID da academia: ");
+                    academia = scan.nextInt();
+                    if (academia == 1) {
+                        int a = 1;
+                        
+                        clearScreen();
+                        for (Aluno aluno : gym1.getAlunos()) {
+                            System.out.println(a + ") " + aluno.toString() + "\n");
+                            a++;
+                        }
 
-        // ALuno 6
-        Date data6 = formato.parse("11/03/1978");
-        gym2.alunos.add(new Aluno("Velho doido", "Masculino", data6, 2.11, 154.5, "Experiente", 1));
+                        System.out.print("Digite o ID do aluno que deseja remover: ");
+                        id = scan.nextInt();
+                        gym1.alunos.remove(id - 1);
+                    } else if (academia == 2) {
+                        int a = 1;
 
+                        clearScreen();
+                        for (Aluno aluno : gym2.getAlunos()) {
+                            System.out.println(a + ") " + aluno.toString() + "\n");
+                            a++;
+                        }
 
-
-        gym1.setNome("Ratos Gymbrothers");                          // muda o nome, endereço e telefone de gym1
-        gym1.setEndereco("Shopping Mall");
-        gym1.setTelefone("(41) 9 0237-4932");
-
-        gym2.setNome("Carpas Trembolona");                         // muda o nome, endereço e telefone de gym2
-        gym2.setEndereco("Porto Seguro");
-        gym2.setTelefone("(41) 9 2304-3948");
-
-        System.out.println();
-        System.out.println("Mudando...");
-        System.out.println();
-
-        System.out.print("Academia 1: ");               // printa o objeto mudado do tipo Academia gym1    
-        System.out.print(gym1.getNome()+" - ");
-        System.out.print(gym1.getEndereco()+" - ");
-        System.out.print(gym1.getTelefone());
-        System.out.println();
-
-        System.out.print("Academia 2: ");             // printa o objeto mudado do tipo Academia gym2
-        System.out.print(gym2.getNome()+" - ");
-        System.out.print(gym2.getEndereco()+" - ");
-        System.out.print(gym2.getTelefone());
-        System.out.println();
-
-        System.out.println();
-        System.out.println("Alunos da Academia 1:");
-        for (Aluno aluno : gym1.getAlunos ()) {
-            System.out.println (aluno.toString ());
-        }
-
-        System.out.println();
-        System.out.println("Alunos da Academia 2:");
-        for (Aluno aluno : gym2.getAlunos ()) {
-            System.out.println (aluno.toString ());
-        }
+                        System.out.print("Digite o ID do aluno que deseja remover: ");
+                        id = scan.nextInt();
+                        gym2.alunos.remove(id - 1);
+                    }
+                break;
+                default:
+                    System.out.println("Opção inválida!");
+                break;
+            }
+        } while (fim == 0);
     scan.close();
     }
  

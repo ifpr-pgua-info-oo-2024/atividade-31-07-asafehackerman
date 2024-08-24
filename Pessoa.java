@@ -19,7 +19,7 @@ public class Pessoa {
         this.peso = peso;
     }
 
-    int calcularIdade(Date nascimento) {
+    static int calcularIdade(Date nascimento) {
         Date actualDate = new Date();
         
         long diffInMillies = Math.abs(actualDate.getTime() - nascimento.getTime());
@@ -29,12 +29,12 @@ public class Pessoa {
     }
 
     public static Date nascimentoToDate(String nascimento) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return simpleDateFormat.parse(nascimento);
     }
 
     public static String nascimentoToString(Date nascimento) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return simpleDateFormat.format(nascimento);
     }
 }
